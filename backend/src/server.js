@@ -1,5 +1,5 @@
 import express from "express";
-import listingRoute from "./routes/listingRoute.js";
+import listingRoute from "./routes/propertyRoutes.js";
 
 const app = express();
 

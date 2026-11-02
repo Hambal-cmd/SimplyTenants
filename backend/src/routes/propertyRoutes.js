@@ -1,5 +1,5 @@
 import express from "express";
-import { allListing } from "../controllers/listing.js";
+import { allListing } from "../controllers/propertyListings.js";
 
 const route = express.Router();
 
