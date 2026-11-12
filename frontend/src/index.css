@@ -1,1 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
 @import "tailwindcss";
+
+/* Design tokens: change a value here and it updates everywhere.
+   Use them in JSX like bg-brand, text-ink, border-line, bg-mist. */
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --color-brand: #0f5c4d;
+  --color-brand-dark: #0a4237;
+  --color-accent: #f2a93b;
+  --color-accent-soft: #fdf1dc;
+  --color-ink: #17211e;
+  --color-muted: #5b6b66;
+  --color-mist: #e6f1ed;
+  --color-line: #dce6e2;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  background: #ffffff;
+}
