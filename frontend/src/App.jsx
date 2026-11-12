@@ -3,6 +3,7 @@ import Layout from './components/layout/Layout'
 import Home from './pages/Home'
 import RoommateFinder from './pages/RoomateFinder'
 import LegalHelp from './pages/LegalHelp'
+import Listings from './pages/Listing'
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
 
           <Route path="/roommates" element={<RoommateFinder />} />
           <Route path="/legal-help" element={<LegalHelp />} />
+          <Route path='/listings' element={<Listings />} />
 
 
           {/* Add the other pages here as you build them, e.g.
