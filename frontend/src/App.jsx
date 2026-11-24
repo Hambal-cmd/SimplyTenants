@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Layout from './components/layout/Layout'
 import Home from './pages/Home'
 import Listings from './pages/Listing'
+import ListingDetail from './pages/ListingDetail'
 import AddProperty from './pages/AddProperty'
 import RoommateFinder from './pages/RoomateFinder'
 import Auth from './pages/Auth'
@@ -20,6 +21,7 @@ export default function App() {
           <Route path="/login" element={<Auth mode="signin" />} />
           <Route path="/signup" element={<Auth mode="signup" />} />
           <Route path='/listings' element={<Listings />} />
+          <Route path="/listings/:id" element={<ListingDetail />} />
           <Route path='/add-property' element={<AddProperty />} />
 
 
