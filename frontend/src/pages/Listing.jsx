@@ -7,7 +7,8 @@ export default function Listings() {
   // The landing page sends users here as /listings?city=Bengaluru&q=jayanagar
   const [searchParams] = useSearchParams()
   const city = searchParams.get('city') || 'Bengaluru'
-  const query = (searchParams.get('q') || '').trim().toLowerCase()
+  const rawQuery = searchParams.get('q') || ''
+  const query = rawQuery.trim().toLowerCase()
 
   // 1) keep only listings in the chosen city
   const inCity = listings.filter((l) => l.city.toLowerCase() === city.toLowerCase())
@@ -25,7 +26,7 @@ export default function Listings() {
       {/* Search strip, like the one under Airbnb's navbar */}
       <section className="border-b border-line bg-mist/50">
         <div className="mx-auto max-w-7xl px-6 py-8">
-          <SearchBar city={city} />
+          <SearchBar key={`${city}|${rawQuery}`} city={city} initialQuery={rawQuery} />
         </div>
       </section>
 

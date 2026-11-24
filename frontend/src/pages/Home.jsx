@@ -1,11 +1,7 @@
-import { useState } from 'react'
 import SearchBar from '../components/home/SearchBar'
 import CityPicker from '../components/home/CityPicker'
 
 export default function Home() {
-  // The selected city is shared: CityPicker changes it, SearchBar reads it
-  const [city, setCity] = useState('Bengaluru')
-
   return (
     <div>
       {/* Hero: text and search on the left, image on the right */}
@@ -20,7 +16,7 @@ export default function Home() {
           </p>
 
           <div className="mt-8">
-            <SearchBar city={city} />
+            <SearchBar />
           </div>
         </div>
 
@@ -37,10 +33,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* City picker */}
+      {/* City cards: each one opens that city's listings */}
       <section className="mx-auto max-w-7xl px-6 pb-20">
-        <h2 className="mb-6 text-center text-lg font-bold text-ink">Pick your city</h2>
-        <CityPicker selected={city} onSelect={setCity} />
+        <h2 className="mb-6 text-center text-lg font-bold text-ink">Browse by city</h2>
+        <CityPicker />
       </section>
     </div>
   )

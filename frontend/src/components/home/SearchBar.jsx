@@ -1,15 +1,21 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { cities } from '../../data/cities'
 
-export default function SearchBar({ city }) {
-  const [query, setQuery] = useState('')
+// city: the city selected when the bar first appears
+// initialQuery: text to pre-fill (the listings page uses this to show what was searched)
+export default function SearchBar({ city = 'Bengaluru', initialQuery = '' }) {
+  // Make sure the starting city is one that exists in the dropdown
+  const match = cities.find((c) => c.name.toLowerCase() === city.toLowerCase())
+  const [selectedCity, setSelectedCity] = useState(match ? match.name : cities[0].name)
+  const [query, setQuery] = useState(initialQuery)
   const [locating, setLocating] = useState(false)
   const navigate = useNavigate()
 
   // Runs when the user presses Enter or clicks the search icon
   function handleSubmit(e) {
     e.preventDefault()
-    const params = new URLSearchParams({ city, q: query.trim() })
+    const params = new URLSearchParams({ city: selectedCity, q: query.trim() })
     navigate(`/listings?${params.toString()}`)
   }
 
@@ -35,16 +41,45 @@ export default function SearchBar({ city }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex w-full max-w-xl flex-col overflow-hidden rounded-xl border border-line bg-white shadow-sm sm:flex-row"
+      className="flex w-full max-w-2xl flex-col divide-y divide-line overflow-hidden rounded-xl border border-line bg-white shadow-sm focus-within:border-brand focus-within:ring-2 focus-within:ring-brand/20 lg:flex-row lg:divide-x lg:divide-y-0"
     >
+      {/* City dropdown */}
+      <div className="relative lg:w-44 lg:shrink-0">
+        <select
+          value={selectedCity}
+          onChange={(e) => setSelectedCity(e.target.value)}
+          aria-label="City"
+          className="w-full cursor-pointer appearance-none bg-transparent py-4 pl-4 pr-10 text-sm font-semibold text-ink focus:outline-none"
+        >
+          {cities.map((c) => (
+            <option key={c.name} value={c.name}>
+              {c.name}
+            </option>
+          ))}
+        </select>
+        <svg
+          viewBox="0 0 24 24"
+          className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M6 9l6 6 6-6" />
+        </svg>
+      </div>
+
+      {/* Area or college search */}
       <div className="flex flex-1 items-center gap-3 px-4">
         <input
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder={`Search an area or college in ${city}`}
+          placeholder="Area or college"
           aria-label="Search by area or college"
-          className="w-full bg-transparent py-4 text-sm text-ink placeholder:text-muted focus:outline-none"
+          className="w-full min-w-0 bg-transparent py-4 text-sm text-ink placeholder:text-muted focus:outline-none"
         />
         <button
           type="submit"
