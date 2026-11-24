@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Layout from './components/layout/Layout'
 import Home from './pages/Home'
 import RoommateFinder from './pages/RoomateFinder'
+import Auth from './pages/Auth'
 import LegalHelp from './pages/LegalHelp'
 import Listings from './pages/Listing'
 
@@ -15,6 +16,8 @@ export default function App() {
 
           <Route path="/roommates" element={<RoommateFinder />} />
           <Route path="/legal-help" element={<LegalHelp />} />
+          <Route path="/login" element={<Auth mode="signin" />} />
+          <Route path="/signup" element={<Auth mode="signup" />} />
           <Route path='/listings' element={<Listings />} />
 
 
