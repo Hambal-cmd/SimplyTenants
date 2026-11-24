@@ -1,10 +1,11 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Layout from './components/layout/Layout'
 import Home from './pages/Home'
+import Listings from './pages/Listing'
+import AddProperty from './pages/AddProperty'
 import RoommateFinder from './pages/RoomateFinder'
 import Auth from './pages/Auth'
 import LegalHelp from './pages/LegalHelp'
-import Listings from './pages/Listing'
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
           <Route path="/login" element={<Auth mode="signin" />} />
           <Route path="/signup" element={<Auth mode="signup" />} />
           <Route path='/listings' element={<Listings />} />
+          <Route path='/add-property' element={<AddProperty />} />
 
 
           {/* Add the other pages here as you build them, e.g.

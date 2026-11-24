@@ -25,15 +25,17 @@ export default function ListingCard({ listing }) {
             <path d="M10 20v-6h4v6" />
           </svg>
 
-          <img
-            src={listing.images[0]}
-            alt={listing.title}
-            loading="lazy"
-            className="relative h-full w-full object-cover"
-            onError={(e) => {
-              e.currentTarget.style.display = 'none'
-            }}
-          />
+          {listing.images?.[0] && (
+            <img
+              src={listing.images[0]}
+              alt={listing.title}
+              loading="lazy"
+              className="relative h-full w-full object-cover"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none'
+              }}
+            />
+          )}
 
           {listing.verified && (
             <span className="absolute left-3 top-3 rounded-full bg-white px-3 py-1 text-xs font-semibold text-ink shadow-sm">
